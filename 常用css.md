@@ -1,3 +1,4 @@
+
 ### 元素居中的方法
 
 #### 水平居中
@@ -274,23 +275,22 @@ border：**无法用百分比写border的宽度**
 
 - 实现自适应的两栏
 
-  ![image-20221115141718750](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20221115141718750.png)
+![image-20221115141718750](https://user-images.githubusercontent.com/64974747/224205168-14155a87-dd6a-4cd6-987d-179cd6424b1e.png)
 
   - left设置为浮动 right不设置浮动
     - 他们的左边沿就会重叠接触
   - 想要变成不重叠的两栏，就要让right这块成为一个BFC【因为BFC区域不会与浮动元素重叠（浮动元素自己也有BFC）】
 
-   ![image-20221115142126542](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20221115142126542.png)
+![image-20221115142115877](https://user-images.githubusercontent.com/64974747/224205190-29188d0f-f80d-411f-994f-88cad413dc69.png)
 
 - 清除浮动
 
   1. 当子元素（有高度）浮动，父元素没有设置高度时，父元素的高度就会塌陷【所以我们要清除浮动】
-
-     ![image-20221115152625645](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20221115152625645.png)
+  ![image-20221115152625645](https://user-images.githubusercontent.com/64974747/224205207-abfd964a-5c1f-4599-a0de-c56d4370cff8.png)
 
      因为BFC计算高度时，会将浮动元素的高度计算进去，所以**将父元素变成一个BFC就可以清除浮动**
 
-     ![image-20221115160209513](C:\Users\admin\AppData\Roaming\Typora\typora-user-images\image-20221115160209513.png)
+     ![image-20221115160209513](https://user-images.githubusercontent.com/64974747/224205223-c318b8e9-0e74-4ab5-9002-80b49c193083.png)
 
      ```
          .par{

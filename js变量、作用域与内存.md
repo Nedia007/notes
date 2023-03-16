@@ -29,9 +29,7 @@
     ```js
     let obj1 = new Object();
     let obj2 = obj1;
-    obj1.name ="lina"![image](https://user-images.githubusercontent.com/64974747/225505619-45880f34-1902-4232-8a5e-602e5162ea6f.png)
-![image](https://user-images.githubusercontent.com/64974747/225505643-b326e5b6-6ffa-40be-af0a-cf6cd9db0d91.png)
-
+    obj1.name ="lina"
     console.log(obj2.name);//lina
     ```
 
@@ -171,5 +169,4 @@ https://www.jianshu.com/p/cbd224250579
 
   
 
-![image](https://user-images.githubusercontent.com/64974747/225505608-ac2746ee-5cf0-4e59-83dd-d573d043a7cc.png)
 

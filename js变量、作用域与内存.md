@@ -31,7 +31,6 @@
     let obj2 = obj1;
     obj1.name ="lina"![image](https://user-images.githubusercontent.com/64974747/225505619-45880f34-1902-4232-8a5e-602e5162ea6f.png)
 ![image](https://user-images.githubusercontent.com/64974747/225505643-b326e5b6-6ffa-40be-af0a-cf6cd9db0d91.png)
-![image](https://user-images.githubusercontent.com/64974747/225505712-0c3b74c0-f368-409d-840e-61f19a14ca8d.png)
 
     console.log(obj2.name);//lina
     ```

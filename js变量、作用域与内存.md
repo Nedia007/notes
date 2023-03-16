@@ -33,7 +33,7 @@
     console.log(obj2.name);//lina
     ```
 
-    ![image-20230313155308303](C:\Users\grt-linyina\AppData\Roaming\Typora\typora-user-images\image-20230313155308303.png)
+    ![image](https://user-images.githubusercontent.com/64974747/225506133-ec9e828e-a8bf-4062-b76d-cd2f4e873652.png)
 
 #### 传递参数
 

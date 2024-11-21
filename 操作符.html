@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 一元操作符 只操作一个值的操作符
+    // --num  ++num 先改变num的值 再进行求和
+    // num++ num-- 在求值之后才发生递增和递减
+    let num1 = 2;
+    let num2 = 20;
+    let num3 = 2;
+    let num4 = 20;
+    console.info(--num1+num2) //1+20=21
+    console.info(num1+num2)//1+20
+    console.info(num3++ + num4)//2+20=22
+    console.info(num3 + num4)//3+20=23
+
+// --和++可以作用于任何值，不局限于整数，字符串，布尔值，浮点值，对象都可以用
+let s1 = '2';
+let s2 = 'z';
+let b = false;
+let f = 1.1;
+let o={
+    valueOf(){
+        return -1
+    }
+}
+console.log(s1++);//字符串是有效的数值形式，先转换成数值再改 2+1=3
+console.log(s2++);//字符串不是有效的数值形式，变量的值是NAN -》数值-》NAN
+console.log(b++);//布尔值 false-》0 true-》1 -》转换成数值 0+1=1
+console.log(f--);//浮点值 +1或减1  1.1-1=0.100000000009（浮点数不精确）
+console.log(o--);//对象调用valueOf() 获取的数值是-1 -1-1=-2
+
+
+// 逻辑与操作符&&，（短路操作符） 第一个的操作数决定了结果false，就不对第二个操作数求值
+// 逻辑与 ：第一个是true 就会求第二个如果是ture——》true 如果是false-》false
+// 如果第一个是false 不会对第二个求值，直接返回第一个的false  
+// 有一个是false结果就为false
+
+// 逻辑或 ||：具有短路属性 第一个是false 会求第二个的值 如果是true -》true
+// 第一个是ture 不对第二个值进行求值 直接返回true
+// 有一个是ture，结果就为true
+
+// 乘性操作符  ：乘法*、除法、取模
+// 使用这个操作符时，在处理非数值的时候会自动类型转换 调用Number()函数转换为数值
+// NaN*任意值=NaN
+// Infinity无限数 *0=NAN
+//  Infinity无限数 *非0的有限数值   有限数是负数-》-Infinity 是正数 Infinity
+// Infinity * Infinity = Infinity
+
+// 除法操作符/
+// Infinity/Infinity =NaN
+// 0/0=NAN
+// 任意值/NAN 或NAN/任意值 =NAN
+// Infinity/任意值 根据第二个的符号判断正负 
+
+// 取模操作符%
+// 指数操作符  ES7新增
+console.log(Math.pow(3,2),'指数')//指数操作
+console.log(3**2,'指数')
+// 指数赋值操作符**=
+let sq = 3
+sq **=2
+console.log(sq)
+
+// 加法操作符
+//NAN+任意值=NAN
+// Infinity+Infinity=Infinity
+// -Infinity+-Infinity=-Infinity
+// Infinity+-Infinity=NAN
+// +0 + +0=+0
+// -0 + +0= +0
+// -0 + -0 =-0
+// 两个操作符都是字符串，将第二个字符怕拼接到第一个字符串的后面
+// 只有一个字符串，将另一个操作数转换为字符串
+// 有任意操作数是对象，数值或者布尔值，调用他们的toString()方法获取字符然后拼接
+// undefined和null也是调用String()函数 获取到"undefined","null"
+
+
+let res1=5+5;
+let res2=(5+6)+"5";//要加上括号,才会先计算再拼接,否则直接拼接
+console.log(res1,res2)
+
+// 减法操作符
+// 有任意操作数是NAN->NAN
+// Infinity-Infinity = NAN
+// -Infinity-Infinity = NAN
+// Infinity- -Infinity = Infinity
+// +0 - +0 =+0
+// +0 - -0 =-0
+// -0 - -0 =+0
+// 非数字调用Number()转换成数值 
+// 有操作数是对象 则调用valueOf()取得数值 再计算,对象没有valueof 则调用toString方法
+
+
+// 关系操作符
+// <小于 >大于 <=小于等于 >=大于等于 操作符返回布尔值
+// 操作数是字符串->逐个比较字符串中对应的编码
+// 有任意操作数是数字,则将另一个操作数转换成数值再进行比较
+// 有操作数是布尔值,也转换成数值进行比较
+// 有操作数是对象 则调用valueOf()取得数值 再计算,对象没有valueof 则调用toString方法
+
+// 相等操作符
+// 等于和不等于
+// == != 会发生强制类型转换 再进行比较
+// 字符串和布尔值会转换成数值 再进行比较是否相等
+// null==undefined 
+// null和undefined不会转换成其他类型的值再进行比较
+// NAN ==一定返回false !=一定返回true NAN不等于NAN
+// 两个操作数是对象,则比较他们是不是同一个对象,同一个返回true 不是同一个返沪true
+
+// 全等和不全等
+// 不转换类型进行比较 
+// 数据类型不同就会返回false
+
+// 条件操作符
+//  条件判断?true返回的值:false返回的值
+
+// if(这里可以是表达式求值结果不一定式布尔值) 
+
+
+// for-in， 用于枚举（对象）中的非符号键(属性)
+// 返回的对象属性是无序的 
+// for-in循环要迭代的变量是null 或者undefined 则不执行循环体
+for(propName in window){
+    document.write("\n"+propName)
+}
+
+// for-of  用于遍历可迭代对象的(元素)
+for(const el of [2,4,6,8]){
+    document.write(el)
+} 
+
+
+// break 用于立即退出循环，强制执行循环代码后的下一条
+// continue 用于退出当前循环，但是会从下一个循环继续执行
+
+// with 将代码作用域设置为特定的对象
+// 当一个对象被反复操作是，可以提供便利
+
+// let qs = location.search.substring(1);
+// let hostName = location.hostname;
+// let url =location.href
+// 上面每一行代码都用到了location对象 可以使用简洁写法
+with(location){
+    let qs =search.substring(1);
+    let hostName = hostname;
+    let url = href;
+}
+// switch 如果表达式等于后面的值，则执行下面的语句
+var i=25;
+switch(i){
+    case 25:
+        console.log("25");
+        break;//最好都给每个条件加上break
+    case 35:
+        console.log('35');
+        break;
+    default:
+        console.log("other")        
+}
+// Switch 语句是if语句的另一种写法，最好多用
+// 这个语句可以用于所有数据类型 ：字符串、对象 ，条件的值也可以说是变量和表达式
+switch ("hello world"){
+    case "hello"+"world":
+        console.log("Greeting was found");
+        break;
+    case "goodbye":
+        console.log("Greeting was found");
+        break;  
+    default:
+        console.log("Unexpected message was found.")  
+}
+
+// 函数
+// 函数里面只要遇到return 函数就会立即停止执行并退出 因此return语句后面的代码不会被执行
+
+</script>
+</html>

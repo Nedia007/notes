@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+</body>
+<script>
+    // 变量的两种数据类型 原始值和引用值
+    // 原始值：Undefined、Null、Boolean、Number、String 和 Symbol。 这几种数据类型
+    // 初始化可以使用字面量的形式
+    // 不能有属性  但是给原始值加属性不会报错
+    let name = "Nicholas";
+    name.age  = 27;
+    console.log(name.age);//undefined
+    // 原始值在复制值时互不干扰
+    let num1 = 5;
+    let num2 = num1; //5
+    
+    // 引用值：是由多个值构成的对象 （保存在内存种的对象）  操作对象时是操作的是该对象的引用而不是实际对象本身
+    // 引用值：可以随时添加删除修改他的属性和方法
+    let person = new Object();
+    person.name = "Nicholas";
+    console.log(person.name);
+    // 引用值在复制值的时候会互相干扰
+    let obj1 = new Object();
+    let obj2 = obj1;
+    obj1.name = "Nicholaa"
+    console.log(obj2.name,"打印obj2查看是否有这属性") //有
+    // 原理
+    // obj1 的对象存在一个内存里 ，调用的时候会通过指针调用
+    // 给obj2 赋值的obj1的时候 会给他赋值同样的指针到同一个对象的内存
+    // 所以改变了obj1对象的属性 ，obj2也会被影响到
+
+    // js不允许直接访问内存位置 ，所以不能直接操作对象所在的内存空间
+
+    var color = 'blue';
+    function getColor(){
+        return color;
+    }
+    console.log(getColor());//'blue'
+
+</script>
+</html>

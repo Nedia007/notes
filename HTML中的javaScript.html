@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <!-- 告知预加载器动态文件的存在 -->
+    <link rel="stylesheet" href="111.js">
+</head> 
+<body>
+    
+</body>
+<!-- <script 
+async="立即开始下载脚本" 
+charset="" 
+crossorigin="跨资源共享设置" 
+defer="对外部脚本文件有效,延迟到文档完全被解析和显示之后再执行"
+integrity=""
+src="要执行的代码和外部文件"
+type="text/javascript"></script> -->
+<!--  动态加载脚本-->
+<script>
+    // 创建一个script元素并添加到dom
+    let script = document.createElement('script');   
+    script.src='111.js';
+    // 默认以异步的方式加载  由于不是所有浏览器都支持async属性 所以要统一设置为同步的
+    script.async=false;
+    document.head.appendChild(script)
+
+    //这种获取加载资源的方式对与加载器不可见，会影响加载队列的优先级，需要在头部告知预加载器知道文件的存在
+
+
+</script>
+
+</html>
+

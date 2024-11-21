@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+    <script>
+        function a(a,b,callback){
+            console.log('todo  a fn');
+            let data = [1];
+            callback && callback(data);
+        }
+
+        function b(a,b,callback){
+            console.log('todo  b fn');
+            let data2 = [12];
+            callback && callback(data2);
+        }sadsadsadsa
+
+        function c(data,data2){
+            console.log(data,data2,"传子页面");
+        }
+
+        a("a","123",function(res){
+            b("111",res,function(res2){
+                c(res,res2)
+            })
+        });
+    </script>
+</body>
+</html>

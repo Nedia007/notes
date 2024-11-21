@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text" id="ii">
+
+    <input type="button" id="btn" value="获取验证码">
+</body>
+<script>
+    // 防抖：就是触发多次，只有最后一次生效，就是没有被打断的最后一次才能成功触发
+    // 在一段时间内每触发一次就会重新计算 
+    // 节流：就是在一段时间内多次触发的时候只生效一次，（只有第一次的生效）
+    // 点击切换轮播图，不管点击切换多少次都是两秒换一张
+
+    // 函数防抖：一段时间内连续触发事件，只执行最后一次
+    // 函数节流：一段事件内只执行一次
+
+// 防抖
+document.querySelector("#ii").addEventListener('input',
+    ()=>{debounce()}
+)
+let timeId = null
+const debounce=()=>{
+    // 每次触发会先清除之前的定时器再定义新的定时器
+    clearTimeout(timeId);
+    timeId=setTimeout(()=>{
+        console.log("多次触发只有最后一次生效")
+    },1000)
+}
+
+
+// 节流 
+let flag = true //设置控制开关
+let timeID =null
+const inp =document.querySelector('#btn')
+inp.addEventListener("click",()=>{
+
+    inp.disabled = true;
+    inp.style = "background:#666;"
+    // var count = 10;
+    // if(!flag){
+    //     return 
+    // }
+    // flag =false;
+    var s=5;//设置时间间隔
+    inp.value =s+'秒后再次获取验证码'
+    timeID=setTimeout(()=>{
+        s--;
+        inp.value =s+'秒后再次获取验证码';
+        if(s<=0){
+            clearInterval(timeID)
+            inp.value="获取验证码"
+            // flag =true
+            s=5;
+            inp.disabled = false;
+            inp.style = "background:#E5E5E5;"
+          
+        }
+        console.log(s+'秒后再次获取验证码')
+    },1000)
+})
+</script>
+</html>

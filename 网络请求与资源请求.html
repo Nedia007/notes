@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+let xhr = new XMLHttpRequest();
+// readyState属性可以表示当前的请求和响应处在哪个阶段
+// redState变化时，会触发readystatechange事件，可以用来检查readyState的值
+xhr.onreadystatechange = function(){//要在open之前赋值
+    if(xhr.readyState == 4){//已完成
+        if((xhr.status>=200 && xhr.status <300)|| xhr.status == 304){
+            alert(xhr.responseText)//返回响应体的文本
+        }else{
+            alert("Request was unsuccessful:"+ xhr.status);
+        }
+
+    }
+}
+// xhr.open("请求类型","同源url","是否异步")
+xhr.open("get","xxx",true)//打开了但还没发送
+xhr.send(null)//如果不发送请求体就必须传null
+
+// JSONP  
+// http://freegeoip.net/json/?callback=handleResponse
+// // url+数据=回调函数的名字
+// function handleResponse(response){
+//     console.log(`${response.ip} ,${response.city},${response.region_name}`);
+// }
+// let script =document.createElement("script");
+// script.src ="http://freegeoip.net/json/?callback=handleResponse";
+// document.body.insertBefore(script,document.body.firstChild)
+
+
+// // 常见的Fetch请求形式
+// // 1.发送JSON数据
+// let payload = JSON.stringify({
+//     foo:'bar'
+// });
+
+// let jsonHeaders = new Headers({
+//     'Content-Type': 'application/json'
+// })
+
+// fetch('/send-me-json',{
+//     method: 'POST',//请求方式
+//     body: payload,
+//     headers: jsonHeaders
+// })
+
+// // 2.在请求体中发送参数
+// let payload1 = 'foo=bar&baz=qux';
+
+// let paramHeaders =new Headers({
+//     'Content-Type':'application/x-www-form-urlencoded; charset=UTF-8'
+// })
+
+// fetch('/send-me-params',{
+//     method:'POST',
+//     body:payload,
+//     headers:paramheaders
+// })
+
+// // 3.发送文件
+// // 请求体支持FromData实现，fetch()可以序列化并发送文件字段中的文件
+// let imageFormData= new FormData();
+// let imageInput = document.querySelector("input[type='file']");
+// imageFormData.append('image',imageInput.files[0])
+// fetch('/img-upload',{
+//     method:'post',
+//     body:imageFormData
+// })
+// // 发送多个文件
+// let imageInput1 = document.querySelector("input[type='file'][multiple]");
+
+// for (let i=0;i<imageInput1.files.length;++i){
+//     imageFormData.append('image',imageInput1.files[i])
+// }
+// fetch('/img-upload',{
+//     method:'POST',
+//     body:imageFormData
+// })
+
+// // 4.加载Blob文件 
+// const imageElement = document.querySelector('img');
+// fetch('my-image.png').then()(
+//     (response)=>response.blob()
+//     // 响应对象上暴露blob()方法
+// ).then((blob)=>{
+//     // 给这个元素加上src属性的值
+//     imageElement.src = URL.createObjectURL(blob)
+// })
+
+// // 5.发送跨源请求
+// // 6.中断请求
+
+
+// Header对象
+// 是外发请求合入栈响应头部的容器
+// Request.prototype.headers可以访问
+// 使用new Headers() 可以创建一个新实例
+
+// get()获取，set()设置键更新键，has()检查键，delete()删除值
+
+// let h = new Headers();
+// // 设置键
+// h.set('foo','bar')
+// // 检查键
+// console.log(h.has('foo'))//true
+// // 获取值
+// console.log(h.get('foo'))
+// // 更新值
+// h.set('foo','baz');
+// // 删除值
+// h.delete('foo')
+// // 可以使用可迭代对象来初始化
+// // 比如数组
+// let seed =[['foo','bar']]
+// let h1 = new Headers(seed)
+// // 有keys() values()、entries()迭代接口
+// console.log(...h1.keys())
+// console.log(...h1.values())
+// console.log(...h1.entries())
+// // 可以使用键值对形式对象进行初始化 
+// let seed1 ={foo:'bar'}//map对象不行
+// // 一个头部字段有多个值
+// // 通过append添加多个值
+
+
+// Request对象
+// 1.创建Request对象
+// new Request('url','init对象')
+// 没有init对象使用默认值
+let r = new Request('https://foo.com')
+console.log(r);
+// 用指定的初始值创建Request对象
+console.log(new Request('https://foo.com',{method:'post'}))
+
+// 2.克隆Request对象
+// 一：将实例作为input参数传给Request构造函数，会得到他的副本
+let r1=new Request('https://foo.com');
+let r2= new Request(r1,{method:'POST'})
+
+console.log(r1.method)
+console.log(r2.method)
+// 构造函数克隆不能得到一模一样的
+// 第一个请求的请求体会被标记为“已使用”
+// 对象的源不同，referreer属性会被清除
+
+// 二：使用clone()方法
+// 会创建一模一样的副本，任何值都不会被覆盖
+
+r1 = new Request('https://foo.com',{method:'POST',body:'foobar'});
+r2 = r1.clone();
+console.log(r1.bodyUsed);//false
+console.log(r2.bodyUsed) ;//false
+// 如果被的复制的请求对象的请求体已经被读取，那么就不能用clone来创建对象的副本
+// 会抛出异常
+
+// 三：在fetch中使用Request对象
+// 会像构造函数一样init对象会被覆盖传入请求对象的值
+// 向foo.com发送GET请求
+fetch(r)
+// 向foo.com 发送POST请求
+fetch(r,{method:"POST"})
+// fetch()不能拿请求体已经用过的Request对象来发送请求
+// r1.text()
+// fetch(r1);//报错
+// 有请求体的Request只能在一次fetch中使用
+// 想要请求体相同的Request对象多次调用fetch(),必须要在第一次发送fetch()请求前调用clone()
+fetch(r1.clone())
+fetch(r1.clone());
+fetch(r1)
+
+// Response对象
+// 获取资源响应的接口
+// 暴露响应的信息和响应体的不同方式
+
+// 1.创建Response对象
+// 构造函数初始化对象 不需要参数
+let rp=new Response();
+console.log(r)
+
+rp= new Response('foobar',{
+    status:418,
+    statusText:'teapot'
+})
+
+// 用于生成Response对象,以及重定向 
+// Response.redirect(url,重定向状态码{301，302，303，307，308})
+// 返回的时候重定向的response的对象
+console.log(Response.redirect('https://foo.com',301));
+// Response.error()用于产生表示网络错误的Response对象
+console.log(Response.error());
+
+// 克隆Response对象
+// 使用clone()方法 会创建一个副本不会覆盖任何值
+let rr = new Response('foobar');
+let rr2 = r1.clone();
+
+//有响应体的Response对象只能读取一次
+let r11= new Response('foobar');
+r11.text().then(console.log)//foobar
+// 第二次读取
+// r11.text().then(console.log)//error
+// 多次读取包含响应体的同一个Response对象必须在第一次读取前调用clone
+r11.clone().text().then(console.log)
+r11.clone().text().then(console.log)
+r.text().then(console.log)
+
+// 伪克隆
+let r22 = new Response(r1.body)
+
+
+// web Socket
+// 新建一个Web Socket 
+let socket = new  WebSocket("ws://www.example.com/server.php");
+// 发送和接收苟书记
+let stringData ="hello world!"
+let arrayBufferData = Uint8Array.from(['f','o','o']);
+let blobData = new Blob(['f','o','o']);
+socket.send(stringData);
+socket.send(arrayBufferData.buffer);
+socket.send(blobData)
+
+// 触发message事件 可以通过event.data属性访问到有效载荷
+socket.onmessage = function(event) {
+    let data = event.data;
+}
+
+socket.onopen =function(){
+    alert("连接建立成功");
+}
+socket.onerror =function(){
+    alert("连接建立失败");
+}
+
+scoket.onclose =function (){
+    alert("连接关闭");
+}
+</script>
+</html>

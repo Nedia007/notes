@@ -1,0 +1,379 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 打印的i用的是同一个变量
+        // for (var i=0;i<5;i++){
+        //     setTimeout(()=>console.log(i),0)
+        // }
+        // 使用let 声明变量时 js引擎会在后台为每个迭代循环声明一个新的迭代变量
+        // for (let k=0;k<5;k++){
+        //     setTimeout(()=>console.log(k,"2"),0)
+        // }
+
+        // 六种简单数据类型 undefine null boolean string  number Symbol(新增)
+        // 一种复杂类型  Object
+
+
+// 七种数据类型  
+// 简单数据类型6种：undefined boolean string number symbol null 
+//一种复杂数据类型：object
+
+// typeof 操作符 
+// null和对象返回Object类型
+// 数字返回number
+// undefined返回undefined
+// 字符串返回 string
+//函数返回function
+// true 、false 返回Boolean
+// 符号返回symbol
+
+var message="111";
+var obj={};
+console.log(typeof 9);
+console.log(typeof message);
+console.log(typeof obj);
+console.log(typeof null);//这里返回的是object  因为特殊值null会被认为是一个空对象的引用
+
+
+// 有undefined 的值的变量跟未定义变量的区别
+
+let mess ;//声明了但没有赋值，那就是undefined
+console.log(mess);
+// console.log(age);//由于没有声明这个变量，这里会报错
+
+// 没有声明的变量 只能通过typeof 返回类型的时候不会报错
+console.log(typeof mess);//undefined
+console.log(typeof age);//undefined
+
+//这里自动到布尔值的转换 非undefined-》true  是undefined-》false
+if(mess){//如果mess没被声明会报错
+    console.log(mess,"message被定义了")
+}
+
+ // 
+if(!mess){
+    console.log(mess,"message是undefined未被定义")
+}
+
+
+
+// null类型
+// null 表示一个空对象指针
+let a=null
+console.log(typeof a)//返回的是一个对象
+
+//如果一个变量将来要保存对象数据类型时，使用null来初始化
+let car=null
+// 通过这个变量是不是null 判断这个变量是否被重新赋予了一个对象的引用
+if(car!=null){
+
+}
+// undefined 由null派生  null和undefined表面上相等
+console.log(null == undefined)//true
+
+
+// Boolean 类型  true/false (区分大小写的)
+// 将其他类型转换成Boolean值  Boolean()
+// ！！if 等流控制语句会自动执行其他类型值到布尔值的转换
+
+// Number 类型
+//1.浮点数
+//2.值的范围
+// 如果值<Number.MIN_VALUE  -Infinity
+// 如果值>Number.MAX_VALUE  Infinity
+// 判断一个值是不是有限大 isFinite()
+// 3.NAN （表示不是数值 用于本来要表示返回的数值的操作失败了）
+// 0、-0、+0 这些值除与任何数值都是NaN
+// 分子非0 分母是 0，-0，+0 ；例如5/0会返回infinity ,5/-0会返回-infinity
+//NAN 进行+-*/操作都是NAN   
+// NAN不能等于NAN以及其他任何值
+// console.log(NAN==NAN)//返回的是false
+// isNAN()函数 判断函数是不是数值，不是返回true 是返回false
+// 布尔值跟有纯数字的字符串在调用这个函数时可以自动转换成数值
+// 4.数值转换  
+// Number()可以用于任何数据类型 
+// Blooean:ture->1 false->0
+// Number:返回对应数值 10->10
+// null:null->0
+// undefined->NAN
+// string:字符串里面有普通数值包含加减号——>十进制 ；字符串里面有浮点数 1.1 -》1.1 ；字符串里面有十六进制格式0xf -》十六进制； 空字符串-》0  其他情况：NAN
+// Object：obj.valueof() 按照上面的规则返回值  如果结果是NAN 则调用toString() 按照字符串规则转换
+
+// parseInt()用于字符串转数值
+// 从第一个非空字符开始转换
+// 第一个字符不是+=和数字 -》NAN   
+parseInt("")//NAN
+// 第一个是字符符合 就会依次检测每个字符知道字符串末尾 ；非字符串会被忽略
+parseInt("1234blue")//1234
+// 0x开头-》十六进制整数
+// 0开头 017-》八进制整数
+parseInt("10",8)//按八进制解析 第二个参数指定进制数
+
+// parseFloat()用于字符串转数值
+// 从位置0开始检测每个字符 解析到末尾，和到第一个浮点数字字符为止，其他的小数点之后的数字会被忽略
+// 忽略字符串开头的0
+// 不能解析十六进制 -》返回的都是0
+
+
+// 等于和全等的区别
+// == 或者！= 会发生强制类型转换 
+// 布尔值 false-》0 true-》1
+// 一个是字符串一个是数字的时候会字符串用Number转换后进行比较
+// 一个是对象一个不是对象 会调用valueOf()方法获取原始值，再根据前面的规则比较
+// null和undefined 相等
+// NaN 不等于其他数值包括本身
+// 如果两个都是对象则比较他们是否是同一个对象
+
+// ===(全等)/不全等(!==) 只发生比较，不进行任何类型转换（任何时候推荐使用这个）
+
+
+// String 类型
+
+// 字符串使用 "" `` ''标示
+// 字符串具有不可变性 一旦创建他的值就不能改变了  如果修改变量中的字符串 就需要销毁原始的字符串
+let lang="Java"
+lang=lang +"Script"  //首先分配一个足够容纳10个字符的空间 填上JavaScript  最后销毁原始的字符串
+
+// 转换为字符串
+// toString() 
+// 数值、布尔值、对象、字符串值有这个方法
+// null undefined 值没有toString方法
+// toString() 一般不接收任何参数
+// 数值调用toString时可以接收一个底数参数
+let num=10
+console.log(num.toString(2))//转换为字符串的几进制 默认是相同的结果
+
+
+// 不确定这个值是null还是undefined Sting()进行转型会返回相应类型的字符串
+// String 的规则 如果有toString() 则调用该方法并返回结果
+// 如果是null-》"null"
+// 如果是undefined -》"undefined"
+
+
+// 模板字面量
+// 特点：保留换行字符，可以跨行定义字符串
+
+// 字符串插值
+let value=4
+let exponet="second"
+// 以前的字符串插值
+let interpolatedString=
+value+' to the '+ exponet +'power is'+(value*value)
+// 使用模板字面量实现
+let interpolatedString2=
+`${value} to the ${exponet} power is ${value*value}`
+
+// 将表达式转换为字符串时会调用toString()
+// 插值表达式中可以调用函数和方法
+
+
+// 模板字面量标签函数
+
+let d = 6;
+let b = 9;
+
+function simpleTag(string ,aValExpression,bValExpression,sumExpression){
+    console.info(string,"原始字符串") //返回的是一个数组 [] ['', '+', '=', '']
+    console.info(aValExpression,"字面量1") //6
+    console.info(bValExpression,"字面量2")//9
+    console.info(sumExpression,"求值结果")//15
+    return 'footbar';
+}
+
+let untaggedResult =`${d}+${b}=${d + b}`
+let taggedResult =simpleTag`${d}+${b}=${d + b}`
+
+console.info(untaggedResult)
+console.info(taggedResult)
+
+// 使用模板字面量可以直接获取原始的模板字面量内容
+console.log(`\u00A9`) //获取的是转换后的字符 ©
+// 想要不是转换后的字符 使用String.raw  
+console.log(String.raw`\u00A9`)
+
+
+// Symbol 类型  他的值是唯一的，用来解决命名冲突的问题
+// 不可以跟new一起用 new Symbol()是错的
+// 1.符号的基本用法
+let sum = Symbol();//初始化
+
+// 没有参数
+let name1 = Symbol();
+let name2 = Symbol();
+name1===name1//false
+// 
+let name3 = Symbol('flag');
+let name4 = Symbol('flag');
+name1===name1//false
+
+// 2.Symbol值不能与其他数据进行运算 ，不能转换为数字
+// Symbol()+1 报错
+// Symbol()+"a" 报错
+// let sym = Symbol(); console.log(`${sym}`) //报错
+
+// 字符串拼接：可以显示转换，不能隐式转换
+Symbol().toString() //"Symbol()"
+
+// 3.遍历Symbol的对象属性  
+// 不可以使用for...in /of
+// 使用Reflect.ownKeys/Object.getOwnPropertySymbols() 获取对象的所以键名
+
+let sy = Symbol();
+let obj1 = {
+    name:"lisi",
+    age:21
+}
+obj1[sy]="symbol" //设置属性
+console.log(obj1,"含有symbol的对象") 
+
+// 不能使用for in/of 遍历出数组
+for (let key in obj1){
+    console.log(key) //只打印出了name和age属性 没打印出sy属性
+}
+//使用symbol作为属性
+let s1=Symbol('fpp'), s2=Symbol('fpp1'), s3=Symbol('fpp2'),s4=Symbol('fpp3')
+let o = {}; o[s1]='foo val';
+console.log(o)
+Object.defineProperty(o,s2,{value:'bar val'})//定义属性
+console.log(o,"定义属性")
+Object.defineProperties(o,{
+    [s3]:{value:'baz val'},
+    [s4]:{value:'qux val'}
+
+})//定义多个属性
+console.log(o,"定义多个属性")
+
+let oo = {
+    [s1]:'fpp val',
+    [s2]:'bar val',
+    baz:'baz val',
+    qux:'qux val'
+};
+console.log(Object.getOwnPropertySymbols(oo),"对象的符号属性数组")
+console.log(Object.getOwnPropertyNames(oo),"对象的常规属性数组")
+console.log(Object.getOwnPropertyDescriptors(oo),"对象的常规属性数组和符号属性数组都返回")
+console.log(Reflect.ownKeys(oo),"返回两种类型的键")
+// 遇到唯一性的场景时要想到 Symbol
+
+// 4.Symbol的方法 
+// Symbol.for():用于将描述相同的变量指向同一个Symbol值 ，这样使用描述就可以区分了
+Symbol.for("foo");// 创建一个symbol并放入symbol表中，键为foo
+Symbol.for("foo");//这时候不是创建而是1在注册表中读取键为"foo"的symbol
+
+console.log(Symbol.for("bar")===Symbol.for("bar")) //返回true
+console.log(Symbol("bar")===Symbol("bar"))//返回false  每调用一次Symbol函数，就会返回一个新的symbol
+
+var sym1 = Symbol.for("mario")
+console.log(sym1.toString(),"sym1")//Symbol(mario)
+
+// Symbol()和Symbol.for()的不同
+// Symbol()定义的值不放入全局 symbol注册表中 ，每次都是新建 （描述的值相同也不相等）
+// Symbol.for() 方法创建的symbol 会被放入一个全局symbol注册表中 （先查询有没有这个key，有的话就返回，没有就创建）
+// Symbol()和Symbol.for()的相同点：返回值的类型都是Symbol
+
+
+// Symbol，keyFor() 
+// 用来查找注册表中关联的键，找到返回key值，没有返回undefined
+var globalSym = Symbol.for("foo");//创建一个symbol放入注册表
+Symbol.keyFor(globalSym)//"foo"
+var localSym = Symbol();//创建一个symbol不放入symbol注册表
+Symbol.keyFor(localSym);//undefined ,找不到key
+
+// Symbol的属性
+// Symbol.prototype.description
+// 他是一个只读属性，返回对象的可选描述的字符串
+
+let a111 = Symbol("acc") //symbol()定义的数据
+console.log(a111.description,Symbol.keyFor(a111)//acc //undefined
+)
+
+let a1 = Symbol.for("acc1"); //symbol.for 定义的数据
+console.log(a1.description)//"acc"
+console.log(Symbol.keyFor(a1));//acc
+
+// 未指定的数据 
+let a2 =22;
+a2.description//undefined
+
+// description和S3213123h12iuh3ui1 3uy12iuy 1 3y1 819yi1u2yh3ui1231oi 3io13yyio  yy231oiy hy ymbol.keyFor()方法的区别 
+// description 可以返回所有symbol类型的描述，Symbol.keyFor()只能返回Symbol.for()在全局注册过的描述
+
+// 常见的五个Symbol内置值
+// Symbol.hasInstance 
+class Person1 {}
+let p1 = new Person1;
+console.log(p1 instanceof Person1);
+//[Symbol.hasInstance] 等价于instanceof
+console.log(Person1[Symbol.hasInstance](p1))
+
+// 控制内置值返回的值
+class Person {
+    static[Symbol.hasInstance](params) {
+        console.log(params)
+        console.log("使用类型检测")
+        return false
+    }
+}
+let qwe = {}
+console.log(qwe instanceof Person)
+
+// Symbol.iterator有这个值就可以被for of 迭代，没有这个值就不能被迭代
+
+// 可以使用for of 遍历 是由于具备iterator属性 
+// Array Arguments Set Map String TypedArray NodeList 都可以使用for of
+// 对象不能用for of 我们总计加上这个属性就可以用了
+
+let aaobj ={
+    0: 'zhangsan',
+    1: 21,
+    length: 2,
+    [Symbol.iterator]:Array.prototype[Symbol.iterator]
+};
+for(let item of aaobj){
+    console.log(item)
+}
+// 这里有个缺陷： 因为我们使用的是数组原型上的Symbol.iterator，所以对象必须是个伪数组才能遍历，自定义一个对象上的Symbol.iterator属性，使其更加通用
+
+let bbobj ={
+    0: 'zhangsan',
+    1: 21,
+    length: 2,
+    [Symbol.iterator](){
+        console.log(this)
+        let index  = 0
+        let Keyarr = Object.keys(this)
+        let len = Keyarr.length
+        return{
+            next: ()=>{
+                if(index >= len) return {
+                    value:undefined,
+                    done:true
+                }
+                let result ={
+                    value:this[Keyarr[index]],
+                    done:false
+                }
+                index++
+                return result
+            }
+        }
+    }
+};
+for (let item of bbobj){
+    console.log(item)
+}
+</script>
+</html>   
+
+
+

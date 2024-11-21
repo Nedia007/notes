@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    
+</body>
+<script>
+    // 使用document.cookie设置新的cookies字符串
+    document.cookie ="name=Nicholas";
+    // 因为cookie所有名和值都是URL编码的 ，因此必须使用decodeURIComponent()解码
+    // 设置cookie值最好使用encodeURIComponent()对名称和值进行编码
+    document.cookie = encodeURIComponent("name") + "=" + encodeURIComponent("Nicholas")+";domain=.worx.com;path=/";
+
+
+// Web Storage
+
+// Storage类型
+// 用于保持名/值对 数据 直至存储空间上线
+// 只能存储字符串,非字符串会转换
+// clear():删除所有值
+// getItem(name):取得给定name的值
+// key(index) 获取指定下标的key
+// removeItem(name) 删除name名的键值对
+// setItem(name,value):设置给定name的值
+
+// 通过length属性可以确定Storage对象中保存了多少键值对,{无法确定对象中所有数据占用的空间大小}
+
+// sessionStorage对象只存储会话数据  浏览器关闭了才会清空
+// 不受页面刷新的影响
+// 使用方法添加存储数据
+sessionStorage.setItem("name","lina");
+// 使用属性存储数据
+sessionStorage.book="qqqqq";
+
+// 取得属性名获取数据
+// 通过方法
+let name = sessionStorage.getItem("name");
+console.log(name);
+// 通过属性
+let book =sessionStorage.book;
+console.log(book);
+// 遍历所有的值
+for (let i =0,len=sessionStorage.length; i<len ;i++){
+    let key = sessionStorage.key(i);
+    let value =sessionStorage.getItem(key);
+    alert(`${key}=${value}`)
+}
+
+// 删除数据
+// 直接使用delete操作符删除对象属性
+delete sessionStorage.name
+// 使用方法删除.removeItem()
+sessionStorage.removeItem("book");
+
+
+// localStorage
+// 要访问同一个localStorage对象,页面必须来自同一个域,需要有相同的端口和相同的端口协议
+// localStorage存储的数据 不会收到页面刷新影响,也不会因为关闭窗口标签页或者重启浏览器而丢失
+// 用户清除浏览器缓存或者使用js进行删除才会被删除
+
+
+
+// 存储事件
+// Storage对象发生变化的时候会触发存储事件
+// clear() delete removeItem() setItem() 会触发这个事件
+//  四个属性
+// domain:存储变化对应的域
+// key:被设置或者被删除的键
+// newValue：被设置的新值
+// oldVlaue：键被变化之前的值
+
+window.addEventListener("storage",(event)=>{
+    alert($(event.domain),$(event.key),$(event.newValue),$(event.oldValue))
+})
+
+</script>
+</html>
